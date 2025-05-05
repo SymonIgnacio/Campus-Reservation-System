@@ -12,7 +12,7 @@ const AdminUsers = () => {
     firstname: '',
     middlename: '',
     lastname: '',
-    department: '',
+    department: 'College of Computer Studies',
     username: '',
     email: '',
     password: '',
@@ -21,6 +21,14 @@ const AdminUsers = () => {
   });
   const [addUserError, setAddUserError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Department options
+  const departments = [
+    'College of Computer Studies',
+    'College of Accountancy',
+    'College of Education',
+    'College of Hotel Management and Tourism'
+  ];
 
   // Fetch users from the API
   const fetchUsers = async (roleFilter = '') => {
@@ -147,7 +155,7 @@ const AdminUsers = () => {
           firstname: '',
           middlename: '',
           lastname: '',
-          department: '',
+          department: 'College of Computer Studies',
           username: '',
           email: '',
           password: '',
@@ -199,7 +207,7 @@ const AdminUsers = () => {
 
   return (
     <div className="admin-users-container">
-      <h2>USER MANAGEMENT</h2>
+      <h2 className="page-title">USER MANAGEMENT</h2>
       
       <div className="controls">
         <div className="filter-container">
@@ -340,13 +348,16 @@ const AdminUsers = () => {
                 
                 <div className="form-group">
                   <label>Department:</label>
-                  <input 
-                    type="text" 
+                  <select 
                     name="department" 
                     value={newUser.department} 
                     onChange={handleNewUserChange} 
-                    required 
-                  />
+                    required
+                  >
+                    {departments.map(dept => (
+                      <option key={dept} value={dept}>{dept}</option>
+                    ))}
+                  </select>
                 </div>
               </div>
               
